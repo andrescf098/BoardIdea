@@ -1,12 +1,13 @@
-import { Button } from '@/components/ui/button';
-import { Ghost } from 'lucide-react';
+'use client';
+
+import { SignInButton } from '@clerk/nextjs';
+import { useConvexAuth } from 'convex/react';
 import Link from 'next/link';
 export default function Home() {
+  const { isAuthenticated } = useConvexAuth();
   return (
-    <div>
-      <Button asChild size='lg'>
-        <Link href='/'>Boton</Link>
-      </Button>
-    </div>
+    <main>
+      {isAuthenticated ? 'Hola humano' : <SignInButton mode='modal' />}
+    </main>
   );
 }
