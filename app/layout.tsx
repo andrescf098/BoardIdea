@@ -17,12 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang='en' suppressHydrationWarning={true}>
-        <body className={inter.className}>
-          <ConvexClientProvider>{children}</ConvexClientProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang='en' suppressHydrationWarning={true}>
+      <body className={inter.className}>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
+    </html>
   );
 }
