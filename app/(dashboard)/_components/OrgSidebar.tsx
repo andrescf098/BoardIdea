@@ -21,7 +21,7 @@ export const OrgSidebar = () => {
     <div className='hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5 '>
       <Link href='/'>
         <div className='flex items-center justify-center gap-x-2'>
-          <Image src='/logo.svg' alt='Logo' height={40} width={40} />
+          <Image src='/logo.svg' alt='Logo' height={30} width={30} />
           <span className={cn('font-semibold text-xl', font.className)}>
             BoardIdea
           </span>
