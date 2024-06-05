@@ -4,6 +4,7 @@ import './globals.css';
 import { ConvexClientProvider } from '@/providers/ConvexClientProvider';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/sonner';
+import { ModalProvider } from '@/providers/modalProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ConvexClientProvider>
           <Toaster />
+          <ModalProvider />
           {children}
         </ConvexClientProvider>
       </body>
