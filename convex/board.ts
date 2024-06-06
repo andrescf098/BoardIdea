@@ -25,24 +25,35 @@ export const create = mutation({
       throw new Error('Unauthenticated');
     }
     const randomImage = images[Math.floor(Math.random() * images.length)];
-    const board = await ctx.db.insert('boards', {
+    const data = {
       title: args.title,
       orgId: args.orgId,
       authorId: identity.subject,
       authorName: identity.email!,
       imageUrl: randomImage,
-    });
+    };
+    const board = await ctx.db.insert('boards', data);
     return board;
   },
 });
+
 export const remove = mutation({
   args: { id: v.id('boards') },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error('Unauthenticated');
+    const userId = identity.subject;
+    const existingFavorite = await ctx.db
+      .query('userFavorites')
+      .withIndex('by_user_board', (q) =>
+        q.eq('userId', userId).eq('boardId', args.id)
+      )
+      .unique();
+    if (existingFavorite) await ctx.db.delete(existingFavorite._id);
     await ctx.db.delete(args.id);
   },
 });
+
 export const update = mutation({
   args: {
     id: v.id('boards'),
@@ -59,6 +70,7 @@ export const update = mutation({
     return board;
   },
 });
+
 export const favorite = mutation({
   args: { id: v.id('boards'), orgId: v.string() },
   handler: async (ctx, args) => {
@@ -70,7 +82,7 @@ export const favorite = mutation({
     const existingFavorite = await ctx.db
       .query('userFavorites')
       .withIndex('by_user_board_org', (q) =>
-        q.eq('userId', userId).eq('boardId', board._id).eq('orgId', board.orgId)
+        q.eq('userId', userId).eq('boardId', board._id)
       )
       .unique();
     if (existingFavorite) {
@@ -84,6 +96,7 @@ export const favorite = mutation({
     return board;
   },
 });
+
 export const unfavorite = mutation({
   args: { id: v.id('boards') },
   handler: async (ctx, args) => {
@@ -98,7 +111,6 @@ export const unfavorite = mutation({
         q.eq('userId', userId).eq('boardId', board._id)
       )
       .unique();
-    console.log(existingFavorite);
     if (!existingFavorite) {
       throw new Error('Favorite board not found');
     }

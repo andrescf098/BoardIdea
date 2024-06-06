@@ -32,6 +32,9 @@ dependencies:
   convex:
     specifier: ^1.12.0
     version: 1.12.0(react-dom@18.3.1)(react@18.3.1)
+  convex-helpers:
+    specifier: ^0.1.41
+    version: 0.1.41(convex@1.12.0)(react@18.3.1)
   date-fns:
     specifier: ^3.6.0
     version: 3.6.0
@@ -2022,6 +2025,25 @@ packages:
 
   /convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
+    dev: false
+
+  /convex-helpers@0.1.41(convex@1.12.0)(react@18.3.1):
+    resolution: {integrity: sha512-RnQJOXCAujwRwjNcwzQNJZeNDMe7nKASfC3+5e05wpwg71RSrJdZnDcGlyOZ5f/E53+wnRnuYequnDjjOJWH3A==}
+    peerDependencies:
+      convex: ^1.12.0
+      hono: ^4.0.5
+      react: ^17.0.2 || ^18.0.0
+      zod: ^3.22.4
+    peerDependenciesMeta:
+      hono:
+        optional: true
+      react:
+        optional: true
+      zod:
+        optional: true
+    dependencies:
+      convex: 1.12.0(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
     dev: false
 
   /convex@1.12.0(react-dom@18.3.1)(react@18.3.1):
