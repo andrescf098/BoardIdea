@@ -84,6 +84,11 @@ export enum Side {
   Right = 8,
 }
 
+export type Camera = {
+  x: number;
+  y: number;
+};
+
 export type CanvasState =
   | { mode: CanvasMode.None }
   | { mode: CanvasMode.SeleccionNet; origin: Point; current?: Point }
