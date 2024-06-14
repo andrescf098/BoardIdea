@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return new Response('Unauthorized', { status: 403 });
   }
   const userInfo = {
-    name: user.firstName || 'Anonymous',
+    name: user.firstName || 'Teammate',
     picture: user.imageUrl,
   };
   const session = liveblocks.prepareSession(user.id, { userInfo });
