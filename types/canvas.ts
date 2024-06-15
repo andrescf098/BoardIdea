@@ -2,7 +2,6 @@ export type Color = {
   r: number;
   g: number;
   b: number;
-  a: number;
 };
 
 export type Camare = {
@@ -114,3 +113,10 @@ export enum CanvasMode {
   Resizing,
   Pencil,
 }
+
+export type Layer =
+  | RectangleLayer
+  | EllipseLayer
+  | TextLayer
+  | NoteLayer
+  | PathLayer;
