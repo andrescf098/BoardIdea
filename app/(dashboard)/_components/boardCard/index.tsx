@@ -12,6 +12,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { useApiMutation } from '@/hooks/useApiMutation';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
+import { placeHolder } from '@/utils/placeholderBlurDataUrl';
 
 interface BoardCardProps {
   id: string;
@@ -63,6 +64,8 @@ export const BoardCard = ({
             src={imageUrl}
             alt={title}
             fill
+            quality={75}
+            blurDataURL={placeHolder.blurDataUrl}
             className='object-cover w-full h-full'
           />
           <Overlay />
